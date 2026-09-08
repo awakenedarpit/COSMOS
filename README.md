@@ -74,11 +74,12 @@ COSMOS/
 │       ├── index.css              # COSMOS visual system and responsive layout
 │       ├── components/            # Shared template and UI primitives
 │       ├── contexts/              # Theme/runtime contexts from the scaffold
-│       └── pages/                 # Template page entry points
+│       └── pages/                 # Template-compatible page entry points
 ├── server/                        # Template-compatible static server entry
 ├── shared/                        # Template-compatible shared constants
 ├── AGENTS.md                      # Operating manual for future agents
 ├── MEMORY.md                      # Durable project state and next steps
+├── docs/                          # Architecture, development, roadmap, and release notes
 └── README.md                      # This document
 ```
 
@@ -127,6 +128,7 @@ Before releasing, run `pnpm check`, `pnpm build`, inspect the Actions run, and c
 - [`docs/ARCHITECTURE.md`](./docs/ARCHITECTURE.md) — product layers, state boundaries, and future cloud seams.
 - [`docs/DEVELOPMENT.md`](./docs/DEVELOPMENT.md) — implementation workflow, QA checklist, and troubleshooting.
 - [`docs/ROADMAP.md`](./docs/ROADMAP.md) — post-V1 roadmap and release themes.
+- [`docs/RELEASE_NOTES_V1.0.0.md`](./docs/RELEASE_NOTES_V1.0.0.md) — detailed V1.0.0 feature and validation notes.
 
 ## License
 
