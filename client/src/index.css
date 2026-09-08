@@ -147,7 +147,8 @@ button:active:not(:disabled) { transform: scale(.975); }
 .solar-background::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(8,9,18,.82) 0%, rgba(8,9,18,.38) 34%, rgba(8,9,18,.2) 62%, rgba(8,9,18,.68) 100%), linear-gradient(180deg, rgba(8,9,18,.4), transparent 32%, rgba(8,9,18,.58)); }
 .solar-background canvas { display: block; width: 100% !important; height: 100% !important; }
 .solar-background-dimmed { opacity: .22; filter: saturate(.65) blur(1px); }
-.sidebar, .main-shell, .mobile-bottom-nav { position: relative; z-index: 1; }
+.sidebar { position: fixed; z-index: 20; }
+.main-shell, .mobile-bottom-nav { position: relative; z-index: 1; }
 .main-shell { background: linear-gradient(90deg, rgba(8,9,18,.14), rgba(8,9,18,.04)); }
 .panel, .stat-card, .spatial-panel, .topbar { background-color: rgba(16,17,29,.72); backdrop-filter: blur(12px); }
 @media (max-width: 900px) { .solar-background { opacity: .48; } .solar-background::after { background: linear-gradient(180deg, rgba(8,9,18,.58), rgba(8,9,18,.26) 38%, rgba(8,9,18,.72)); } }
