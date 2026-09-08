@@ -19,6 +19,7 @@ export type Subject = { code: string; name: string; progress: number; next: stri
 export type UserProfile = { name: string; username: string; email: string; college: string; course: string; branch: string; semester: string; academicGroup: string; graduationYear: string; bio: string; updatedAt: string };
 export type RoadmapTopic = { id: string; week: number; area: string; subject: string; topics: string[] };
 export type CosmosData = { version: 2; tasks: Task[]; goals: Goal[]; schedule: ScheduleBlock[]; sessions: StudySession[]; activities: Activity[]; subjects: Subject[]; settings: Record<string, unknown>; roadmapProgress: Record<string, "not-started" | "in-progress" | "completed">; profile: UserProfile };
+import { enqueueSnapshot } from "./sync";
 
 const PREFIX = "cosmos.";
 const now = () => new Date().toISOString();
@@ -74,7 +75,7 @@ export const loadData = (): CosmosData => {
   const data = { ...seed, tasks, schedule: safeParse("schedule", seed.schedule), goals: safeParse("goals", []), sessions: safeParse("sessions", []), activities: safeParse("activities", []), profile: safeParse("profile", emptyProfile()) };
   save("data", data); return data;
 };
-export const saveData = (data: CosmosData) => save("data", data);
+export const saveData = (data: CosmosData) => { save("data", data); enqueueSnapshot(data); };
 export const addActivity = (data: CosmosData, text: string, tone: Activity["tone"] = "violet"): CosmosData => ({ ...data, activities: [{ id: id(), text, tone, createdAt: now() }, ...data.activities].slice(0, 30) });
 export const exportData = (data: CosmosData) => JSON.stringify({ ...data, exportedAt: now(), app: "COSMOS" }, null, 2);
 export const validateImport = (value: unknown): value is CosmosData => { const x = value as CosmosData; return Boolean(x && typeof x === "object" && Array.isArray(x.tasks) && Array.isArray(x.goals) && Array.isArray(x.schedule) && Array.isArray(x.sessions) && (!x.profile || typeof x.profile === "object") && (!x.roadmapProgress || typeof x.roadmapProgress === "object")); };
