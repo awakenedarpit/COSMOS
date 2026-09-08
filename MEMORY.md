@@ -2,9 +2,9 @@
 
 ## Current state
 
-V1 is implemented as a React + TypeScript + Vite static frontend. The default surface is the Command Center dashboard with a cosmic orbit visualization, semester journey, progress stat cards, task queue, schedule, activity timeline, and quick actions.
+The functional upgrade is implemented as a React + TypeScript + Vite static frontend. The default surface remains the Command Center dashboard, now driven by a typed local data repository instead of hardcoded personal records.
 
-Navigation surfaces implemented: Dashboard, Schedule, Syllabus, Tasks, Study, Goals, Analytics, Roadmap, Knowledge, and Settings. The task flow supports local task creation, completion toggles, and browser persistence. Study flow opens a focus-session modal. Orbit subject nodes open subject detail drawers.
+Navigation surfaces implemented: Dashboard, Schedule, Syllabus, Tasks, Study, Goals, Analytics, Roadmap, Knowledge, and Settings. Tasks and goals support create, edit, delete, progress/completion updates, and persistence. Schedule blocks are initialized once from the user's provided weekly plan and are editable thereafter. Study supports countdown, pause/resume, reset, finish-and-log, and manual logging. Analytics derives counts from stored data. Settings supports validated JSON export/import.
 
 ## Design decisions
 
@@ -13,10 +13,16 @@ Navigation surfaces implemented: Dashboard, Schedule, Syllabus, Tasks, Study, Go
 - CSS/SVG visualizations keep the static build fast and GitHub Pages compatible.
 - Mobile navigation uses a compact top bar and fixed bottom nav; desktop uses a persistent sidebar.
 
+## Functional architecture
+
+- `client/src/services/storage.ts` owns the `CosmosData` model, defensive parsing, one-time schedule initialization, persistence, activity records, export, and import validation.
+- `client/src/App.tsx` owns the UI surfaces and application services that update the repository state.
+- System subjects are immutable application data based on Group B Semester 1; user data includes tasks, goals, schedule edits, sessions, activities, and settings.
+- Storage currently uses one versioned `cosmos.data` envelope with a compatibility migration for the original `cosmos.tasks` key.
+
 ## Known next steps
 
-1. Add schema-versioned IndexedDB storage and import/export.
-2. Add a true calendar model and richer task editing.
-3. Add weekly review and backlog/I'm Behind mode.
+1. Add IndexedDB behind the existing storage service for larger workspaces.
+2. Add user-controlled knowledge notes and subject progress editing.
+3. Add richer weekly review and backlog/I'm Behind mode.
 4. Add a server boundary for auth, AI copilot, and Supabase sync.
-5. Configure repository Pages deployment workflow after the first repository push.

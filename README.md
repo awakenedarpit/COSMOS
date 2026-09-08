@@ -4,11 +4,11 @@
 
 COSMOS is a premium, offline-first academic command center for planning, studying, and building momentum. It treats an academic life as an interconnected universe: schedules, tasks, syllabus progress, study sessions, goals, roadmaps, and reflection all live in one calm command center.
 
-> **Project status:** V1 is a polished frontend release with local task persistence and responsive desktop/mobile experiences. Cloud synchronization, authentication, AI assistance, and Supabase remain planned extension points rather than V1 requirements.
+> **Project status:** COSMOS is a responsive, offline-first academic operating system with user-controlled tasks, goals, schedule blocks, study sessions, analytics, and JSON backup. Cloud synchronization, authentication, AI assistance, and Supabase remain planned extension points rather than V1 requirements.
 
 ## What is included in V1
 
-The current release includes a desktop sidebar, mobile top bar, and mobile bottom navigation; a command-center dashboard with progress signals; a CSS/SVG study orbit with selectable subject nodes; a 16-week semester journey; today's priorities and schedule; a local task manager with create and complete flows; a focus-session modal; syllabus and subject progress; goals; analytics; coding and AI/ML roadmaps; a knowledge base; settings; and GitHub Pages deployment automation.
+The current release includes a desktop sidebar, mobile top bar, and mobile bottom navigation; a command-center dashboard with data-derived progress signals; a CSS/SVG study orbit with selectable Group B Semester 1 subjects; a 16-week academic journey; the user's planned Monday–Sunday schedule; full task CRUD; full goal CRUD with progress control; a functional focus timer and manual study logging; syllabus; analytics; learning rotation roadmap; settings; validated JSON import/export; and GitHub Pages deployment automation.
 
 The app is intentionally designed to feel like a serious productivity system rather than a generic student dashboard. The visual language combines deep navy surfaces, restrained violet/cyan/amber accents, subtle orbital geometry, system labels, and accessible contrast.
 
@@ -17,16 +17,17 @@ The app is intentionally designed to feel like a serious productivity system rat
 | Area | V1 behavior |
 | --- | --- |
 | Command center | Progress, focus time, task completion, momentum, orbit, journey, schedule, and activity |
-| Tasks | Add tasks, toggle completion, view priority queue, and persist tasks in the browser |
-| Study | Launch a 25-minute focus-session flow and review weekly focus history |
+| Tasks | Add, edit, delete, complete, reopen, prioritize, subject-tag, schedule, and persist tasks in the browser |
+| Study | Start, pause, resume, reset, finish, log, and persist focus sessions |
 | Syllabus | Track progress across subjects and inspect the next module |
-| Schedule | Review a daily schedule and weekly plan surface |
-| Goals | Track progress toward academic, career, and personal outcomes |
-| Analytics | Review focus hours, consistency, subject effort, and system insights |
+| Schedule | Browse Monday–Sunday, edit the planned schedule, add blocks, and delete blocks |
+| Goals | Create, edit, delete, categorize, deadline, and manually update goal progress |
+| Analytics | Derive task, goal, subject, and study metrics from stored user data |
 | Roadmap | Organize full-stack, Python/AI-ML, and backlog directions |
 | Knowledge | Browse notes and saved ideas in a second-brain surface |
 | Responsive UX | Dedicated sidebar, compact mobile header, stacked cards, and fixed mobile navigation |
-| Offline-first | Task data is saved to `localStorage` under `cosmos.tasks` |
+| Offline-first | Versioned workspace data is saved locally under `cosmos.data` |
+| Backup | Export and validate/import workspace JSON from Settings |
 
 ## Technology
 
@@ -70,7 +71,8 @@ COSMOS/
 ├── client/
 │   ├── index.html                 # App shell and metadata
 │   └── src/
-│       ├── App.tsx                # Routes, product surfaces, state, and local model
+│       ├── App.tsx                # Routes, product surfaces, state, and actions
+│       ├── services/storage.ts     # Typed repository, initialization, import/export
 │       ├── index.css              # COSMOS visual system and responsive layout
 │       ├── components/            # Shared template and UI primitives
 │       ├── contexts/              # Theme/runtime contexts from the scaffold
@@ -85,7 +87,7 @@ COSMOS/
 
 ## Data and privacy
 
-V1 stores task state locally in the current browser. Nothing is sent to a server by the COSMOS frontend. Clearing browser storage removes local task state, so export/import and schema-versioned IndexedDB are planned follow-ups before introducing richer personal data.
+COSMOS stores its workspace locally in the current browser under a versioned `cosmos.data` record. Nothing is sent to a server by the frontend. Clearing browser storage removes local data, so use Settings → Export workspace for backup. Import validates the JSON structure and asks for confirmation before replacing current data.
 
 The intended future architecture is:
 

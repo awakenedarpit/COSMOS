@@ -11,7 +11,7 @@ COSMOS is organized around four product layers:
 
 ## Current frontend boundary
 
-The V1 frontend is a static React application. `client/src/App.tsx` currently owns the route-level view selection, small seed datasets, task state, modal state, and local-storage persistence. `client/src/index.css` owns the COSMOS visual system, responsive breakpoints, motion preferences, and visualization styling.
+The frontend is a static React application. `client/src/App.tsx` owns route-level view selection, modal state, and application actions. `client/src/services/storage.ts` owns the typed repository, defensive parsing, one-time schedule initialization, activity records, export, and import validation. `client/src/index.css` owns the COSMOS visual system, responsive breakpoints, motion preferences, and visualization styling.
 
 The current task model is intentionally small:
 
@@ -27,7 +27,11 @@ type Task = {
 };
 ```
 
-Tasks are serialized under `cosmos.tasks`. Keep the UI behavior stable when expanding this model; use a migration or schema version rather than silently changing stored data.
+The current workspace is serialized as a versioned `CosmosData` envelope under `cosmos.data`. A compatibility read converts the original `cosmos.tasks` prototype key into the new model. Keep the UI behavior stable when expanding this model; use a migration or schema version rather than silently changing stored data.
+
+## System data versus user data
+
+The seven Group B Semester 1 subjects are system academic-plan data. Tasks, goals, schedule edits, study sessions, activity records, settings, and future notes are user data. The application never seeds personal tasks or goals. The provided weekly schedule is initialized once as planned user schedule data, then persisted and edited by the user rather than regenerated.
 
 ## Persistence evolution
 

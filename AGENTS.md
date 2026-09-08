@@ -15,7 +15,15 @@ COSMOS is a premium, offline-first academic operating system. Preserve the cosmi
 
 ## Product seams
 
-- `client/src/App.tsx` contains the current product surfaces and local data model.
+- `client/src/App.tsx` contains the current product surfaces and application actions.
+- `client/src/services/storage.ts` contains the typed local repository, safe initialization, activity records, export, and import validation.
 - `client/src/index.css` contains the design system and responsive layout.
-- `localStorage` is currently used for tasks; schema versioning and IndexedDB can be introduced without changing the UI contract.
+- `localStorage` currently stores one versioned `cosmos.data` envelope; future IndexedDB/Supabase implementations should preserve the repository contract.
 - The app is intentionally prepared for future Supabase/auth/AI integration but does not require those services in V1.
+
+## Data rules
+
+- Never recreate user tasks, goals, or edited schedule blocks on render or every load.
+- System subjects may be seeded because they are application academic-plan data; personal records must be explicitly created by the user.
+- Every mutation must update state, persist through the storage service, and create a real activity record when appropriate.
+- Import must validate before replacement and must require confirmation for destructive replacement.
