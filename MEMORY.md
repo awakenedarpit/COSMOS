@@ -26,3 +26,8 @@ Navigation surfaces implemented: Dashboard, Schedule, Syllabus, Tasks, Study, Go
 2. Add user-controlled knowledge notes and subject progress editing.
 3. Add richer weekly review and backlog/I'm Behind mode.
 4. Add a server boundary for auth, AI copilot, and Supabase sync.
+
+
+## Dynamic Solar System experience
+
+The product now has a global `SolarSystemBackground` built on the existing React Three Fiber dependency and SpatialCore module. It keeps one scene alive behind the UI and smoothly changes camera position, look target, scene rotation, and active planet emphasis based on the current `View`. The scene includes a luminous Sun, eight planets, orbit paths, Saturn's rings, generated stars, cosmic particles, pointer parallax, modal dimming, mobile particle reduction, and reduced-motion support. The mapping is maintained in `sectionStates` in `client/src/components/SpatialCore.tsx`.

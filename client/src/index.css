@@ -140,3 +140,16 @@ button:active:not(:disabled) { transform: scale(.975); }
 @media (max-width:900px) { .sync-status { display:none; }.spatial-panel { grid-template-columns:1fr; min-height:0; }.spatial-copy { padding:20px 20px 0; }.spatial-copy h3 { max-width:400px; }.spatial-canvas { min-height:280px; }.spatial-canvas canvas { min-height:280px; } }
 @media (max-width:560px) { .spatial-panel { margin:14px 0; border-radius:14px; }.spatial-copy { padding:17px 17px 0; }.spatial-copy h3 { font-size:18px; }.spatial-stats { margin-top:14px; }.spatial-canvas,.spatial-canvas canvas { min-height:245px; height:245px!important; }.spatial-panel .spatial-canvas { opacity:.96; }.stat-card:hover,.panel:hover { transform:none; box-shadow:none; } }
 @media (prefers-reduced-motion: reduce) { .spatial-panel::before,.sync-status.syncing i { animation:none; }.stat-card,.panel { transition:none; }.stat-card:hover,.panel:hover { transform:none; } }
+
+/* Living Solar System environment: decorative, persistent, and content-safe. */
+.app-shell { position: relative; isolation: isolate; overflow-x: clip; }
+.solar-background { position: fixed; inset: 0; z-index: -2; pointer-events: none; opacity: .68; background: radial-gradient(circle at 50% 45%, rgba(28, 29, 72, .35), transparent 55%), #080912; transition: opacity .45s ease, filter .45s ease; }
+.solar-background::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(8,9,18,.82) 0%, rgba(8,9,18,.38) 34%, rgba(8,9,18,.2) 62%, rgba(8,9,18,.68) 100%), linear-gradient(180deg, rgba(8,9,18,.4), transparent 32%, rgba(8,9,18,.58)); }
+.solar-background canvas { display: block; width: 100% !important; height: 100% !important; }
+.solar-background-dimmed { opacity: .22; filter: saturate(.65) blur(1px); }
+.sidebar, .main-shell, .mobile-bottom-nav { position: relative; z-index: 1; }
+.main-shell { background: linear-gradient(90deg, rgba(8,9,18,.14), rgba(8,9,18,.04)); }
+.panel, .stat-card, .spatial-panel, .topbar { background-color: rgba(16,17,29,.72); backdrop-filter: blur(12px); }
+@media (max-width: 900px) { .solar-background { opacity: .48; } .solar-background::after { background: linear-gradient(180deg, rgba(8,9,18,.58), rgba(8,9,18,.26) 38%, rgba(8,9,18,.72)); } }
+@media (max-width: 560px) { .solar-background { opacity: .34; } .solar-background-dimmed { opacity: .15; } }
+@media (prefers-reduced-motion: reduce) { .solar-background { transition: none; } .solar-background-dimmed { filter: none; } }

@@ -27,3 +27,10 @@ COSMOS is a premium, offline-first academic operating system. Preserve the cosmi
 - System subjects may be seeded because they are application academic-plan data; personal records must be explicitly created by the user.
 - Every mutation must update state, persist through the storage service, and create a real activity record when appropriate.
 - Import must validate before replacement and must require confirmation for destructive replacement.
+
+
+## Dynamic environment
+
+- The global `SolarSystemBackground` is exported from `client/src/components/SpatialCore.tsx` and mounted once in `App.tsx`.
+- Keep section-specific camera and focus changes centralized in `sectionStates`; do not create a new canvas per route or page.
+- The 3D layer is decorative. Preserve readable UI contrast, modal dimming, mobile simplification, and reduced-motion behavior when extending it.
