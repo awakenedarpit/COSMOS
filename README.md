@@ -105,7 +105,7 @@ The repository contains `.github/workflows/deploy.yml`. A push to `main` runs:
 5. Pages artifact upload.
 6. GitHub Pages deployment.
 
-The repository's Pages settings must have GitHub Actions selected as the deployment source. If the project is served from a repository subpath, set the Vite base path before publishing.
+The repository's Pages settings must have GitHub Actions selected as the deployment source. The Vite configuration automatically uses `/COSMOS/` for GitHub Actions builds and `/` for local development, so the repository subpath is handled by the deployment build.
 
 ## Release process
 
