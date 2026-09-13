@@ -144,3 +144,9 @@ COSMOS now includes a persistent, decorative React Three Fiber Solar System envi
 The section-to-planet mapping is centralized in `client/src/components/SpatialCore.tsx`: Dashboard focuses the Sun, Tasks and Syllabus focus the inner planets, Goals focuses Jupiter, Schedule focuses Saturn, Roadmap travels toward Neptune, Analytics widens the camera, Profile focuses Uranus, and Settings settles into a slower deep-space view. `SolarSystemBackground` interpolates camera position, target, and scene rotation on section changes. It dims when a modal is open, uses a simpler particle budget on small screens, and respects `prefers-reduced-motion`.
 
 The existing dashboard `SpatialCore` remains available as the interactive command-center map; the new global environment extends that architecture rather than adding a second product routing system. Future section positions and visual emphasis can be adjusted through the `sectionStates` configuration and `planetData` in `SpatialCore.tsx`.
+
+
+<!-- awakenedarpit-credits-contact -->
+## Credits & Contact
+
+COSMOS is created and maintained by **Arpit Raj** ([@awakenedarpit](https://github.com/awakenedarpit)). For questions, feedback, or collaboration, contact Arpit through [GitHub](https://github.com/awakenedarpit) or open an issue in this repository.
