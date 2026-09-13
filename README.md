@@ -157,3 +157,6 @@ COSMOS is created and maintained by **Arpit Raj** ([@awakenedarpit](https://gith
 - Instagram: [@awakenedarpit](https://www.instagram.com/awakenedarpit/)
 - LinkedIn: [Arpit Raj](https://www.linkedin.com/in/awakenedarpit/)
 - Email: [awakenedarpit@gmail.com](mailto:awakenedarpit@gmail.com)
+
+<!-- awakenedarpit-twitter-contact -->
+- Twitter/X: [@awakenedarpit](https://x.com/awakenedarpit)
